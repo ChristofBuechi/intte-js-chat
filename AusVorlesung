@@ -1,0 +1,15 @@
+var dataManager = {
+serverUrl : "http://sifsv-80018.hsr.ch/Service/ChatService.asmx/Connect",
+responseData : { },
+sendRequest : function(fncDataReady) {
+var self = this;
+$.get(this.serverUrl,
+function (data) { /* success callback */
+self.responseData = data;
+fncDataReady();
+} )
+.error(function () { self.responseData = { d: "error"; }; });
+}
+};
+dataManager.sendRequest(function() { alert("data available"); } );
+
